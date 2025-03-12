@@ -27,7 +27,7 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    width: 60vw;
+    width: 500px;
     height: 70vh;
     background-color: #362e8d;
     font-size: 60px;
@@ -44,7 +44,8 @@
 }
 
 .action_button{
-    font-size:40px;
+    font-size:30px;
+    margin: 5px;
 }
 
 .title{
