@@ -1,0 +1,36 @@
+.page_container{
+    display:flex;
+    margin-top:5vh;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+
+.login_window{
+    margin-left:5px;
+    margin-right:5px;
+    display:flex;
+    flex-direction: column;
+
+    width: 700px;
+    height: 500px;
+    background-color: #362e8d;
+    font-size: 60px;
+    color:whitesmoke;
+    padding:5px;
+    border-radius:30px;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.account_radio {
+    position:relative;
+    left:70%;
+  }
+
+.center_screen{
+    display:flex;
+    align-items:center;
+    text-align:center;
+}
