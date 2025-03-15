@@ -13,6 +13,10 @@ export default function Home() {
 
 }
 
+  const goToLogin = () =>{
+        router.push('/login')
+  }
+
 
   return (
 
@@ -27,7 +31,7 @@ export default function Home() {
     
     <div className = {styles.button_group}> 
 
-    <button className = {styles.action_button}>Login</button> <button className = {styles.action_button} onClick = {handleRedirect}> Inregistrare</button>
+    <button className = {styles.action_button} onClick = {goToLogin}>Login</button> <button className = {styles.action_button} onClick = {handleRedirect}> Inregistrare</button>
 
     </div>
     
