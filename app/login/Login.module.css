@@ -10,8 +10,8 @@
 .login_window {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    min-height: 380px;
+    width: 400px;
+    min-height: 300px;
     background-color: #362e8d;
     color: whitesmoke;
     padding: 20px;
@@ -20,10 +20,12 @@
     overflow: hidden;
     justify-content: center;
     align-items: center;
+    margin-top:50px;
 }
 
 .input_group {
     margin-bottom: 15px;
+
 }
 
 .input {
@@ -43,18 +45,60 @@
     margin-bottom: 10px;
 }
 
-.login_button {
-    background-color: #ffcc00;
-    color: #333;
-    font-weight: bold;
+.button_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.login_button, .back_button {
+    flex: 1;
     padding: 10px;
     border: none;
     border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease-in-out;
     text-align: center;
 }
 
+.login_button {
+    background-color: #ffcc00;
+    color: #333;
+}
+
 .login_button:hover {
     background-color: #ffdb4d;
+}
+
+.back_button {
+    background-color: #999;
+    color: white;
+}
+
+.back_button:hover {
+    background-color: #777;
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #ffcc00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
