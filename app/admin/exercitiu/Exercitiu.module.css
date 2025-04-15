@@ -1,0 +1,102 @@
+.page_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .mb_4 {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .select,
+  .textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .select:focus,
+  .textarea:focus {
+    border-color: #4f46e5;
+    outline: none;
+  }
+  
+  .select {
+    height: 50px;
+  }
+  
+  .textarea {
+    resize: vertical;
+    height: 150px;
+  }
+  
+  .buttonSubmit,
+  .buttonCancel {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+  }
+  
+  .buttonSubmit {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+  }
+  
+  .buttonSubmit:hover {
+    background-color: #4338ca;
+  }
+  
+  .buttonCancel {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+  }
+  
+  .buttonCancel:hover {
+    background-color: #6b7280;
+  }
+  
+  @media (max-width: 768px) {
+    .page_container {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .form {
+      width: 100%;
+    }
+  }
+  

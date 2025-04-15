@@ -1,20 +1,74 @@
-.loadingContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(0, 0, 0, 0.1);
-    border-top-color: #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  .title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .noTests {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .generateButton {
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generateButton:hover {
+    background-color: #219150;
+  }
+  
+  .testsSection {
+    margin-top: 30px;
+  }
+  
+  .buttonWrapper {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  .testsTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .testsTable th,
+  .testsTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .testsTable th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .testsTable tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  .testsTable tr:hover {
+    background-color: #f1f1f1;
+  }
+  

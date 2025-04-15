@@ -1,0 +1,48 @@
+.pageContainer {
+    padding: 20px;
+    text-align: center;
+}
+
+.pageTitle {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.loadingMessage {
+    font-size: 18px;
+    color: #555;
+}
+
+.exerciseTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tableHeader {
+    background-color: #f4f4f4;
+}
+
+.tableCell {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.tableRow:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.copyButton {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.copyButton:hover {
+    background-color: #0056b3;
+}
