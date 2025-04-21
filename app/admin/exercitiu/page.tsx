@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import styles from "./Exercitiu.module.css"
+import styles from "./Exercitiu.module.css";
 
 type CapitoleType = {
   [idcapitol: number]: {
@@ -35,7 +35,7 @@ export default function Exercitiu() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = {capitol, subcapitol, cerinta, rezolvare };
+    const data = { capitol, subcapitol, cerinta, rezolvare };
     try {
       const response = await axios.post("http://localhost:8000/api/teste/add", data, {
         withCredentials: true,
@@ -47,9 +47,10 @@ export default function Exercitiu() {
       } else {
         alert(response.data.error || "Eroare la adăugare.");
       }
-    } catch (error: any) {
-      console.error("Eroare la trimiterea cererii:", error);
-      alert(error?.response?.data?.error || "Eroare la conectarea cu serverul.");
+    } catch (error) {
+      const axiosError = error as { response?: { data?: { error?: string } } };
+      console.error("Eroare la trimiterea cererii:", axiosError);
+      alert(axiosError.response?.data?.error || "Eroare la conectarea cu serverul.");
     }
   };
 

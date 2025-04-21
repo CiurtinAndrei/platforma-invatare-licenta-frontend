@@ -27,11 +27,11 @@ export default function Home() {
 
     <div className = {styles.login_window}>
 
-    <span className = "styles.tile"><b>Bine ati venit pe platforma MateMAX!</b></span>
+    <span className={styles.title}><b>Bine ați venit pe platforma MateMAX!</b></span>
     
     <div className = {styles.button_group}> 
 
-    <button className = {styles.action_button} onClick = {goToLogin}>Login</button> <button className = {styles.action_button} onClick = {handleRedirect}> Inregistrare</button>
+    <button className = {styles.action_button} onClick = {goToLogin}>Login</button> <button className = {styles.action_button} onClick = {handleRedirect}> Înregistrare</button>
 
     </div>
     

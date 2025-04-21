@@ -63,8 +63,9 @@ export default function RegProfesor() {
       });
 
       router.push("/login");
-    } catch (err: any) {
-      setError(err.response?.data?.error || "Eroare la înregistrare!");
+    } catch (err) {
+      const axiosError = err as { response?: { data?: { error?: string } } };
+      setError(axiosError.response?.data?.error || "Eroare la înregistrare!");
     }
   };
 

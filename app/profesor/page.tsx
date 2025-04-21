@@ -1,50 +1,116 @@
 'use client'
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import styles from './Profesor.module.css';
 import AccBar from './AccBar';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+
+type Test = {
+  idtest: number;
+  tip: string;
+  datacreatie: string;
+  document: string;
+  barem: string;
+  titlu?: string;
+};
+
+
+const style = {
+  position: 'absolute' as const,
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Profesor() {
-  const [tests, setTests] = useState([]);
-  const [error, setError] = useState(null);
+  const [tests, setTests] = useState<Test[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  // Function to fetch tests for the professor.
+  // Modal control and title input
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setTitle('');
+    setError(null);
+  };
+
+
   const fetchTests = async () => {
     try {
       const res = await fetch('http://localhost:8000/api/teste/all', {
         credentials: 'include'
       });
-      if (!res.ok) {
-        throw new Error('Eroare la obținerea testelor');
-      }
-      const data = await res.json();
+      if (!res.ok) throw new Error('Eroare la obținerea testelor');
+      const data: Test[] = await res.json();
       setTests(data);
     } catch (err) {
-      console.error(err);
-      setError(err.message);
+      if (err instanceof Error) {
+        console.error(err);
+        setError(err.message);
+      } else {
+        console.error('Unexpected error', err);
+        setError('Eroare necunoscută la obținerea testelor');
+      }
     }
   };
 
-  // Call fetchTests on component mount.
   useEffect(() => {
     fetchTests();
   }, []);
 
-  // Function to trigger test generation.
+
   const handleGenerateTest = async () => {
+    const trimmed = title.trim();
+    if (trimmed.length === 0 || trimmed.length > 20) {
+      setError('Titlul trebuie să aibă între 1 și 20 de caractere.');
+      return;
+    }
     try {
-      const res = await fetch('http://localhost:8000/api/teste/generate', {
-        method: 'POST',
-        credentials: 'include'
-      });
-      if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData.error || 'Eroare la generarea testului');
-      }
-      // Refresh tests after successful creation.
+      await axios.post(
+        'http://localhost:8000/api/teste/generate',
+        { titlu: trimmed },
+        { withCredentials: true }
+      );
+      handleClose();
       fetchTests();
     } catch (err) {
-      console.error("Error: ", err);
-      setError(err.message);
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.error || 'Eroare la generarea testului');
+      } else {
+        console.error('Unexpected error', err);
+        setError('Eroare necunoscută la generarea testului');
+      }
+    }
+  };
+
+  const handleDeleteTest = async (id: number) => {
+    if (!confirm('Ești sigur că vrei să ștergi acest test?')) return;
+    try {
+      await axios.post(
+        `http://localhost:8000/api/teste/delete/${id}`,
+        {},
+        { withCredentials: true }
+      );
+      fetchTests();
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.error || 'Eroare la ștergerea testului');
+      } else {
+        console.error('Unexpected error', err);
+        setError('Eroare necunoscută la ștergerea testului');
+      }
     }
   };
 
@@ -57,41 +123,96 @@ export default function Profesor() {
       {tests.length === 0 ? (
         <div className={styles.noTests}>
           <p>Niciun test</p>
-          <button className={styles.generateButton} onClick={handleGenerateTest}>
-            Genereaza primul test
+          <button className={styles.generateButton} onClick={handleOpen}>
+            Generează primul test
           </button>
         </div>
       ) : (
-        <div className={styles.testsSection}>
-          <div className={styles.buttonWrapper}>
-            <button className={styles.generateButton} onClick={handleGenerateTest}>
-              Genereaza
-            </button>
+        <>
+          <div className={styles.testsSection}>
+            <div className={styles.buttonWrapper}>
+              <button className={styles.generateButton} onClick={handleOpen}>
+                Generează
+              </button>
+            </div>
+            <div className={styles.scrollableTableContainer}>
+              <table className={styles.testsTable}>
+                <thead>
+                  <tr>
+                    <th>Nr.crt.</th>
+                    <th>Data</th>
+                    <th>Nume Test</th>
+                    <th>Document</th>
+                    <th>Barem</th>
+                    <th>Opțiuni</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tests.map((test, index) => (
+                    <tr key={test.idtest}>
+                      <td>{index + 1}</td>
+                      <td>{new Date(test.datacreatie).toLocaleDateString()}</td>
+                      <td>{test.titlu || '-'}</td>
+                      <td>
+                        <a href={test.document} target="_blank" rel="noopener noreferrer">
+                          Vizualizează
+                        </a>
+                      </td>
+                      <td>
+                        <a href={test.barem} target="_blank" rel="noopener noreferrer">
+                          Vizualizează
+                        </a>
+                      </td>
+                      <td>
+                        <button
+                          className={styles.deleteButton}
+                          onClick={() => handleDeleteTest(test.idtest)}
+                        >
+                          ❌
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <table className={styles.testsTable}>
-            <thead>
-              <tr>
-                <th>ID Test</th>
-                <th>Tip</th>
-                <th>Data</th>
-                <th>Document</th>
-                <th>Barem</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tests.map(test => (
-                <tr key={test.idtest}>
-                  <td>{test.idtest}</td>
-                  <td>{test.tip}</td>
-                  <td>{new Date(test.datacreatie).toLocaleDateString()}</td>
-                  <td>{test.document}</td>
-                  <td>{test.barem}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        </>
       )}
+
+      {/* Title input modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Introdu titlul testului
+          </Typography>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Titlu (max 20 caractere)"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            slotProps={{
+              input: {
+                inputProps: {
+                  maxLength: 20
+                }
+              }
+            }}
+          />
+          <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+            <Button onClick={handleClose}>Anulează</Button>
+            <Button variant="contained" onClick={handleGenerateTest}>
+              Confirmă
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </div>
   );
 }

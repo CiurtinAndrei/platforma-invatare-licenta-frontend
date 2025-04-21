@@ -40,19 +40,19 @@ export default function RegElev() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
-
+  
     const { nume, prenume, adresa, email, telefon, scoala, parola, repeatParola, clasa } = formData;
-
+  
     if (!nume || !prenume || !adresa || !email || !telefon || !parola || !repeatParola || !clasa) {
       setError("Toate câmpurile obligatorii trebuie completate!");
       return;
     }
-
+  
     if (parola !== repeatParola) {
       setError("Parolele nu coincid!");
       return;
     }
-
+  
     try {
       await axios.post("http://localhost:8000/api/elevi/inregistrare", {
         nume,
@@ -64,10 +64,14 @@ export default function RegElev() {
         parola,
         clasa,
       });
-
+  
       router.push("/login");
-    } catch (err: any) {
-      setError(err.response?.data?.error || "Eroare la înregistrare!");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.error || "Eroare la înregistrare!");
+      } else {
+        setError("Eroare necunoscută!");
+      }
     }
   };
 

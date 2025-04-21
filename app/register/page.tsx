@@ -8,7 +8,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import Link from 'next/link';
 import styles from './Register.module.css'
 import RegProfesor from './RegProfesor'
 import RegElev from './RegElev'

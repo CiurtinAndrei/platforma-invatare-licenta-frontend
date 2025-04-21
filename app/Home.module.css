@@ -1,53 +1,51 @@
-.test_button{
-    margin-top:5vh;
-    color: white;
-    background-color: blue;
-    border-radius:5px;
-    width: 150px;
-}
-
-.test_button:hover{
-    background-color:rgb(3, 88, 116);
-}
-
-.page_container{
-    display:flex;
-    margin-top:5vh;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    font-size:30px;
-}
-
-.login_window{
-    margin-left:2vw;
-    margin-right:2vw;
-    display:flex;
+.page_container {
+    display: flex;
     flex-direction: column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    width: 500px;
-    height: 70vh;
-    background-color: #362e8d;
-    font-size: 60px;
-    color:whitesmoke;
-    padding:50px;
-    border-radius:30px;
-    overflow-x:hidden;
-    overflow-y:auto;
-}
-
-.button_group{
-    margin-top: 80px;
-    flex-direction: row;
-}
-
-.action_button{
-    font-size:30px;
-    margin: 5px;
-}
-
-.title{
     justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    font-size: 28px;
+    height:80vh;
+}
+
+.login_window {
+    width: 600px;
+    max-width: 95vw;
+    background-color: #2c3e50;
+    color: whitesmoke;
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.button_group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.action_button {
+    font-size: 24px;
+    padding: 16px 32px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.action_button:hover {
+    background-color: #47d34c;
 }
