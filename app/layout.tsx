@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: "MateMax",
   description: "Platforma de invatamant care are ca scop imbinatatirea abilitatilor matematice ale elevilor de gimanziu!",
-};
+};  
 
 export default function RootLayout({
   children,

@@ -27,11 +27,11 @@
   background-color: #27ae60;
   color: #fff;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 8px 20px;
+  font-size: 12px;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 30px;
   transition: background-color 0.3s ease;
 }
 
@@ -199,3 +199,4 @@
   font-size: 14px; /* Ensure the class size matches the elev name */
   color: #333; /* Adjust text color if needed */
 }
+

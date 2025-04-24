@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import styles from './Elev.module.css';
+import Button from "@mui/material/Button";
 
 export default function AccBar() {
   const [user, setUser] = useState<{ nume: string; prenume: string; role: string } | null>(null);
@@ -57,12 +58,12 @@ export default function AccBar() {
 
   return (
     <div className={styles.accBar}>
-      <h1>
-        Bun venit, {user.nume} {user.prenume}!
-      </h1>
-      <button onClick={handleLogout} className={styles.logoutButton}>
-        Logout
-      </button>
+      <div>
+        <strong>Bun venit,</strong> {user.nume} {user.prenume}
+      </div>
+      <div>
+      <Button onClick={handleLogout}>Logout</Button>
+      </div>
     </div>
   );
 }

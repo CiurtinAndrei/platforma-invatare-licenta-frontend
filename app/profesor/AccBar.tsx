@@ -140,7 +140,7 @@ export default function AccBar() {
         <div><strong>Bun venit,</strong> {user.nume} {user.prenume}</div>
         <div>
           <Button onClick={openModal}>Gestionare elevi</Button>
-          <Button onClick={handleLogout} className={styles.logoutButton}>Logout</Button>
+          <Button onClick={handleLogout}>Logout</Button>
         </div>
       </header>
 
@@ -201,7 +201,7 @@ export default function AccBar() {
                 </Box>
               )) : (
                 <Typography variant="body2" color="text.secondary">
-                  Nu aveți elevi înrolați încă.
+                  Nu ați înrolat niciun elev.
                 </Typography>
               )}
             </Box>
