@@ -490,10 +490,9 @@ export default function AccBar() {
             <Box sx={{ flex:1, overflowY:'auto', p:2 }}>
               <Grid container spacing={2}>
                 {[...new Set(clusters.map(c => c.cluster))].map(clusterId => {
-                  const isNeutral = clusterId === 0;
-                  const title = isNeutral ? 'Subiecte neutre'
+                  const title = clusterId === 0 ? 'Subiecte agreate'
                     : clusterId === 1 ? 'Subiecte problematice'
-                    : 'Subiecte agreate de elevi';
+                    : 'Altele';
                   const items = clusters.filter(c => c.cluster === clusterId);
                   return (
                     <Grid item xs={12} md={4} key={clusterId}>
